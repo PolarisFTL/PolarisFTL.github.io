@@ -19,7 +19,7 @@ redirect_from:
 
 # 😺 About me
 
-I’m currently pursuing a master’s degree with the School of Computer Science and Information Security, Guilin University of Electronic Technology, Guilin, China. My research interests include object detection, object detection in adverse weather, and deep learning.
+I'm currently pursuing a master’s degree with the School of Computer Science and Information Security, Guilin University of Electronic Technology, Guilin, China. My research interests include object detection, object detection in adverse weather, and deep learning.
 
 # 🔥 News
 
@@ -29,9 +29,17 @@ I’m currently pursuing a master’s degree with the School of Computer Science
 
 # 📝 Publications
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TGRS 2025</div><img src='images/MASFNet.png' alt="sym" width="100%"></div></div><div class='paper-box-text' markdown="1">[MASFNet: Multiscale Adaptive Sampling Fusion Network for Object Detection in Adverse Weather]() <br> Zhenbing Liu, **Tianle Fang**, Haoxiang Lu, Weidong Zhang, Rushi Lan <br> IEEE Transactions on Geoscience and Remote Sensing (TGRS), 2025. <br> [**PDF**](https://ieeexplore.ieee.org/document/10955257) [**Code**](https://github.com/PolarisFTL/MASFNet) <br> </div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TGRS 2025</div><img src='images/MASFNet.png' alt="sym" width="100%">
+</div></div>
+<div class='paper-box-text' markdown="1">[MASFNet: Multiscale Adaptive Sampling Fusion Network for Object Detection in Adverse Weather]() <br> Zhenbing Liu, **Tianle Fang**, Haoxiang Lu, Weidong Zhang, Rushi Lan <br> IEEE Transactions on Geoscience and Remote Sensing (TGRS), 2025. <br> [**PDF**](https://ieeexplore.ieee.org/document/10955257) [**Code**](https://github.com/PolarisFTL/MASFNet)<br> 
+</div>
+</div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICME 2025</div><img src='images/RDFNet.png' alt="sym" width="100%"></div></div><div class='paper-box-text' markdown="1">[RDFNet: Real-time Object Detection Framework for Foggy Scenes]() <br> **Tianle Fang**, Zhenbing Liu1, Yutao Tang, Yingxin Huang, Haoxiang Lu, Chuangtao Zheng <br> IEEE International Conference on Multimedia & Expo 2025 (ICME), 2025. <br> [**PDF**](Coming soon) [**Code**](https://github.com/PolarisFTL/RDFNet) <br> </div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICME 2025</div><img src='images/RDFNet.png' alt="sym" width="100%">
+</div></div>
+<div class='paper-box-text' markdown="1">[RDFNet: Real-time Object Detection Framework for Foggy Scenes]() <br> **Tianle Fang**, Zhenbing Liu1, Yutao Tang, Yingxin Huang, Haoxiang Lu, Chuangtao Zheng <br> IEEE International Conference on Multimedia & Expo 2025 (ICME), 2025. <br> [**PDF**](Coming soon) [**Code**](https://github.com/PolarisFTL/RDFNet)<br> 
+</div>
+</div>
 
 # 🎖 Honors and Awards
 
