@@ -7,9 +7,9 @@
 
 # Site Settings
 title: "Tianle Fang"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. "
-repository: "RayeRen/acad-homepage.github.io"
-google_scholar_stats_use_cdn: true
+description: "Object Detection"
+repository: "PolarisFTL/PolarisFTL.github.io"
+google_scholar_stats_use_cdn: false
 
 # google analytics
 google_analytics_id: # get google_analytics_id from https://analytics.google.com/analytics/
@@ -22,13 +22,13 @@ baidu_site_verification: # get baidu_site_verification from https://ziyuan.baidu
 # Site Author
 author:
   name: "Tianle Fang"
-  avatar: r"C:\Users\PolarisFTL\Desktop\证件照\ftl.jpg"
+  avatar: "images/android-chrome-192x192.png"
   bio: "GUET"
   location: "Guilin, China"
   employer:
   pubmed:
-  googlescholar: "https://scholar.google.com/citations?user=rORF0xQAAAAJ"
-  email: "Lpolarisftl123@gmail.com"
+  googlescholar: "https://scholar.google.com/citations?user=rORF0xQAAAAJ&hl=en"
+  email: "polarisftl123@gmail.com"
   researchgate: # e.g., "https://www.researchgate.net/profile/yourprofile"
   uri:
   bitbucket:
