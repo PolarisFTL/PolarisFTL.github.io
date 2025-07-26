@@ -37,7 +37,7 @@ I'm currently pursuing a master’s degree with the School of Computer Science a
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICME 2025</div><img src='images/RDFNet.png' alt="sym" width="100%">
 </div></div>
-<div class='paper-box-text' markdown="1">[RDFNet: Real-time Object Detection Framework for Foggy Scenes (Oral)]() <br> **Tianle Fang**, Zhenbing Liu1, Yutao Tang, Yingxin Huang, Haoxiang Lu, Chuangtao Zheng <br> IEEE International Conference on Multimedia & Expo 2025 (ICME), 2025. <br> [**PDF**](Coming soon) [**Code**](https://github.com/PolarisFTL/RDFNet)<br> 
+<div class='paper-box-text' markdown="1">[RDFNet: Real-time Object Detection Framework for Foggy Scenes (Oral)]() <br> **Tianle Fang**, Zhenbing Liu, Yutao Tang, Yingxin Huang, Haoxiang Lu, Chuangtao Zheng <br> IEEE International Conference on Multimedia & Expo 2025 (ICME), 2025. <br> [**PDF**](Coming soon) [**Code**](https://github.com/PolarisFTL/RDFNet)<br> 
 </div>
 </div>
 
