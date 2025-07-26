@@ -37,25 +37,21 @@ I'm currently pursuing a master’s degree with the School of Computer Science a
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICME 2025</div><img src='images/RDFNet.png' alt="sym" width="100%">
 </div></div>
-<div class='paper-box-text' markdown="1">[RDFNet: Real-time Object Detection Framework for Foggy Scenes]() <br> **Tianle Fang**, Zhenbing Liu1, Yutao Tang, Yingxin Huang, Haoxiang Lu, Chuangtao Zheng <br> IEEE International Conference on Multimedia & Expo 2025 (ICME), 2025. <br> [**PDF**](Coming soon) [**Code**](https://github.com/PolarisFTL/RDFNet)<br> 
+<div class='paper-box-text' markdown="1">[RDFNet: Real-time Object Detection Framework for Foggy Scenes (Oral)]() <br> **Tianle Fang**, Zhenbing Liu1, Yutao Tang, Yingxin Huang, Haoxiang Lu, Chuangtao Zheng <br> IEEE International Conference on Multimedia & Expo 2025 (ICME), 2025. <br> [**PDF**](Coming soon) [**Code**](https://github.com/PolarisFTL/RDFNet)<br> 
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">KBS 2025</div><img src='images/PSFM.png' alt="sym" width="100%">
+</div></div>
+<div class='paper-box-text' markdown="1">[Perceptual stretch and multi-feature fusion for enhancing nighttime images]() <br> Haoxiang Lu, **Tianle Fang**, Zhenbing Liu, Weidong Zhang, Rushi Lan <br> Knowledge-Based Systems (KBS), 2025. <br> [**PDF**](https://www.sciencedirect.com/science/article/pii/S0950705125011189) <br> 
 </div>
 </div>
 
 # 🎖 Honors and Awards
 
-- _2021.10_ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
-- _2021.09_ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
+- _2025.05_ Student Travel Award, ICME 2025
 
 # 📖 Educations
 
-- _2019.06 - 2022.04 (now)_, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
-- _2015.09 - 2019.06_, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
-
-# 💬 Invited Talks
-
-- _2021.06_, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.
-- _2021.03_, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. \| [\[video\]](https://github.com/)
-
-# 💻 Internships
-
-- _2019.05 - 2020.02_, [Lorem](https://github.com/), China.
+- _2019.09 - 2023.06_, Luoyang Normal University, Bachelor of Engineering in Software Engineering, Supervisor: Prof. Jiaquan Shen
+- _2023.09 - 2026.06_ (_now_), Guilin University of Electronic Technology, Guilin University of Electronic Technology, Supervisor: Prof. Zhenbing Liu
