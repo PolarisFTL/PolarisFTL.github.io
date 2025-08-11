@@ -8,7 +8,7 @@ layout: compress
     {% include head.html %}
     {% include head/custom.html %}
   </head>
-
+  {% include visitor_map.html %}
   <body>
 
     {% include browser-upgrade.html %}
@@ -28,6 +28,11 @@ layout: compress
     </div>
 
     {% include scripts.html %}
+
+    <!-- ClustrMaps Visitor Map -->
+    <div style="text-align:center; margin-top:20px;">
+        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=V00NqjXBaKYGj4CBbpOPiEqQob1mCNbJRg_Nf12PTcA"></script>
+    </div>
 
   </body>
 </html>
