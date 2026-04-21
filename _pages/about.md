@@ -53,5 +53,5 @@ I'm currently pursuing a master’s degree with the School of Computer Science a
 
 # 📖 Educations
 
-- _2019.09 - 2023.06_, Luoyang Normal University, Bachelor of Engineering in Software Engineering, Supervisor: Prof. Jiaquan Shen
-- _2023.09 - 2026.06_ (_now_), Guilin University of Electronic Technology, Guilin University of Electronic Technology, Supervisor: Prof. Zhenbing Liu
+- _2019.09 - 2023.06_, Luoyang Normal University, Bachelor of Engineering in Software Engineering
+- _2023.09 - 2026.06_ (_now_), Guilin University of Electronic Technology, Guilin University of Electronic Technology
