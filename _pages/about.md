@@ -19,7 +19,7 @@ redirect_from:
 
 # 😺 About me
 
-I'm currently pursuing a Ph.D. degree with the College of Computer Science and Technology, Jilin University, Changchun, China. My research interests include object detection, object detection in adverse weather, and deep learning.
+I'm currently pursuing a Ph.D. degree with the School of Computer Science and Technology, Jilin University, Changchun, China. My research interests include object detection, object detection in adverse weather, and deep learning.
 
 # 🔥 News
 
