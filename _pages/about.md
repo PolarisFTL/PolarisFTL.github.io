@@ -19,7 +19,7 @@ redirect_from:
 
 # 😺 About me
 
-I'm currently pursuing a master’s degree with the School of Computer Science and Information Security, Guilin University of Electronic Technology, Guilin, China. My research interests include object detection, object detection in adverse weather, and deep learning.
+I'm currently pursuing a Ph.D. degree with the College of Computer Science and Technology, Jilin University, Changchun, China. My research interests include object detection, object detection in adverse weather, and deep learning.
 
 # 🔥 News
 
@@ -51,7 +51,7 @@ I'm currently pursuing a master’s degree with the School of Computer Science a
 
 - _2025.05_ Student Travel Award, ICME 2025
 
-# 📖 Educations
+# 📖 Education
 
+- _2026.09 - Present_, Jilin University, Ph.D. of Computer Science and Technology
 - _2019.09 - 2023.06_, Luoyang Normal University, Bachelor of Engineering in Software Engineering
-- _2023.09 - 2026.06_ (_now_), Guilin University of Electronic Technology, Guilin University of Electronic Technology
