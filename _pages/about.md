@@ -28,7 +28,7 @@ I'm currently pursuing a Ph.D. degree with the School of Computer Science and Te
 - _2025.07_: &nbsp;🎉🎉 One KBS paper accepted.
 
 # 📝 Publications
-
+<div>
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">MM 2025</div><img src='images/C2FXNet.png' alt="sym" width="100%">
 </div></div>
 <div class='paper-box-text' markdown="1">**C2FXNet: Coarse-to-Fine Scene Expert for Unified Object Detection across Adverse Weather** <br> Tianle Fang, Zhenbing Liu, Chong Yin <br> ACM International Conference on Multimedia (MM), 2026. <br> [**PDF**](xxx) [**Code**](xxx)<br> 
