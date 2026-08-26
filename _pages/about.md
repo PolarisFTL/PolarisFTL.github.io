@@ -29,6 +29,11 @@ I'm currently pursuing a Ph.D. degree with the School of Computer Science and Te
 
 # 📝 Publications
 
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">MM 2025</div><img src='images/C2FXNet.png' alt="sym" width="100%">
+</div></div>
+<div class='paper-box-text' markdown="1">**C2FXNet: Coarse-to-Fine Scene Expert for Unified Object Detection across Adverse Weather** <br> Tianle Fang, Zhenbing Liu, Chong Yin <br> ACM International Conference on Multimedia (MM), 2026. <br> [**PDF**](xxx) [**Code**](xxx)<br> 
+</div>
+  
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">TGRS 2025</div><img src='images/MASFNet.png' alt="sym" width="100%">
 </div></div>
 <div class='paper-box-text' markdown="1">**MASFNet: Multiscale Adaptive Sampling Fusion Network for Object Detection in Adverse Weather** <br> Zhenbing Liu, **Tianle Fang**, Haoxiang Lu, Weidong Zhang, Rushi Lan <br> IEEE Transactions on Geoscience and Remote Sensing (TGRS), 2025. <br> [**PDF**](https://ieeexplore.ieee.org/document/10955257) [**Code**](https://github.com/PolarisFTL/MASFNet)<br> 
