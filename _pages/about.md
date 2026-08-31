@@ -23,6 +23,7 @@ I'm currently pursuing a Ph.D. degree with the School of Computer Science and Te
 
 # 🔥 News
 
+- _2026.06_: &nbsp;🎉🎉 One ACM MM paper accepted.
 - _2025.04_: &nbsp;🎉🎉 One TGRS paper accepted.
 - _2025.05_: &nbsp;🎉🎉 One ICME paper accepted.
 - _2025.07_: &nbsp;🎉🎉 One KBS paper accepted.
