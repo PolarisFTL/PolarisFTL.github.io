@@ -43,7 +43,8 @@ My research interests include object detection, object detection in adverse weat
 <div class='paper-box-text' markdown="1">
 
 **C2FXNet: Coarse-to-Fine Scene Expert for Unified Object Detection across Adverse Weather** <br>
-**Tianle Fang**, Zhenbing Liu, Chong Yin <br>
+**Tianle Fang**, Zhenbing Liu, Chong Yin, Bolun Li, Haoxiang Lu<img width="432" height="11" alt="image" src="https://github.com/user-attachments/assets/089c97b0-8a13-4891-a5e8-f5e4482b0bf6" />
+ <br>
 ACM International Conference on Multimedia (MM), 2026. <br>
 [**PDF**](xxx) [**Code**](xxx)<br>
 
