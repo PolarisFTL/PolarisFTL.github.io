@@ -116,5 +116,5 @@ Knowledge-Based Systems (KBS), 2025. <br>
 
 # 📖 Education
 
-- _2023.09 - 2026.06_, Guilin University of Electronic Technology
+- _2026.09 - Present_, Jilin University, College of Computer Science and Technology
 - _2019.09 - 2023.06_, Luoyang Normal University, Bachelor of Engineering in Software Engineering
