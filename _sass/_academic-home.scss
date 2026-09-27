@@ -374,19 +374,21 @@ html[data-theme="academic"] .home-document::before {
 
 .profile-hero {
   display: grid;
-  grid-template-columns: 215px minmax(0, 1fr);
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: clamp(1.75rem, 4vw, 3rem);
+  min-height: 270px;
   align-items: center;
-  min-height: 310px;
+  min-height: 270px;
   padding: 0.4rem 0 2.8rem;
   border-bottom: 1px solid var(--home-line);
 }
+
 
 .profile-hero__portrait-wrap {
   position: relative;
   justify-self: center;
   width: 100%;
-  max-width: 210px;
+  max-width: 175px;
 }
 
 .profile-hero__portrait-frame {
@@ -453,7 +455,7 @@ html[data-theme="academic"] .home-document::before {
 .profile-hero h1 {
   margin: 0;
   color: #142219;
-  font-size: clamp(2.35rem, 5vw, 3.65rem);
+  font-size: clamp(2.1rem, 4vw, 3rem);
   font-weight: 760;
   line-height: 1.06;
   letter-spacing: -0.045em;
@@ -1032,6 +1034,7 @@ html[data-theme="academic"] .site-footer {
     width: min(100% - 1.5rem, 1080px);
   }
 
+
   .nav-toggle {
     display: inline-flex;
   }
@@ -1119,7 +1122,7 @@ html[data-theme="academic"] .site-footer {
   }
 
   .profile-hero__portrait-wrap {
-    max-width: 165px;
+    max-width: 140px;
   }
 
   .profile-hero__content {
@@ -1129,7 +1132,7 @@ html[data-theme="academic"] .site-footer {
   }
 
   .profile-hero h1 {
-    font-size: clamp(2.25rem, 12vw, 3rem);
+    font-size: clamp(2rem, 10vw, 2.6rem);
   }
 
   .research-interests,
