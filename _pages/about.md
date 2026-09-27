@@ -120,7 +120,7 @@ redirect_from:
         <p class="publication-row__authors"><strong class="current-author">Tianle Fang</strong>, Zhenbing Liu, Chong Yin, Bolun Li, Haoxiang Lu</p>
         <p class="publication-row__venue">ACM International Conference on Multimedia (MM), 2026.</p>
         <div class="publication-links" aria-label="C2FXNet resources">
-          <a href="[https://ieeexplore.ieee.org/document/10955257](https://arxiv.org/abs/2609.25693)" target="_blank" rel="noopener noreferrer">PDF <span aria-hidden="true">↗</span></a>
+          <a href="https://arxiv.org/abs/2609.25693" target="_blank" rel="noopener noreferrer">PDF <span aria-hidden="true">↗</span></a>
           <a href="https://github.com/PolarisFTL/C2FXNet" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
         </div>
       </div>
