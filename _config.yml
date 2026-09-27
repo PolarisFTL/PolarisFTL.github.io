@@ -7,7 +7,9 @@
 
 # Site Settings
 title: "Tianle Fang"
-description: "Object Detection"
+description: "Tianle Fang's academic homepage — computer vision research in object detection, multimodal RGB-T vision, and adverse-weather perception."
+url: "https://polarisftl.github.io"
+baseurl: ""
 repository: "PolarisFTL/PolarisFTL.github.io"
 google_scholar_stats_use_cdn: false
 
@@ -23,9 +25,9 @@ baidu_site_verification: # get baidu_site_verification from https://ziyuan.baidu
 author:
   name: "Tianle Fang"
   avatar: "images/breaking bad.jpg"
-  bio: "JLU"
+  bio: "Jilin University"
   location: "Changchun, China"
-  employer: "JLU"
+  employer: "Jilin University"
   pubmed:
   googlescholar: "https://scholar.google.com/citations?user=rORF0xQAAAAJ&hl=en"
   email: "polarisftl123@gmail.com"
@@ -37,7 +39,7 @@ author:
   flickr:
   facebook:
   foursquare:
-  github: # e.g., "github username"
+  github: "PolarisFTL"
   google_plus:
   keybase:
   instagram:

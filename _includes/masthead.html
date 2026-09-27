@@ -1,16 +1,26 @@
-<div class="masthead">
+<header class="masthead" role="banner">
   <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
-        <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="#about-me">Homepage</a></li>
-          {% for link in site.data.navigation.main %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
-          {% endfor %}
-        </ul>
-        <ul class="hidden-links hidden"></ul>
-      </nav>
-    </div>
+    <a class="site-mark" href="{{ '/#home' | relative_url }}" target="_self" aria-label="Tianle Fang homepage">
+      <span class="site-mark__monogram" aria-hidden="true">TF</span>
+      <span class="site-mark__name">Tianle Fang</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-controls="site-navigation" aria-expanded="false">
+      <span class="nav-toggle__label">Menu</span>
+      <span class="nav-toggle__icon" aria-hidden="true"></span>
+    </button>
+
+    <nav id="site-navigation" class="site-navigation" aria-label="Primary navigation">
+      <ul>
+        {% for link in site.data.navigation.main %}
+          <li><a href="{{ link.url | relative_url }}" target="_self" data-nav-section="{{ link.url | split: '#' | last }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <button class="theme-toggle" type="button" aria-label="Switch to Academic theme" aria-pressed="true">
+      <span class="theme-toggle__icon" aria-hidden="true">♣</span>
+      <span class="theme-toggle__label">Clover</span>
+    </button>
   </div>
-</div>
+</header>

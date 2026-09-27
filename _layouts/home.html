@@ -1,0 +1,46 @@
+---
+layout: compress
+---
+
+<!doctype html>
+<html lang="en" class="no-js" data-theme="clover">
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+  </head>
+
+  <body class="academic-home">
+    <a class="skip-link" href="#main-content" target="_self">Skip to main content</a>
+    {% include browser-upgrade.html %}
+    {% include masthead.html %}
+
+    <main id="main" class="home-shell" role="main">
+      <article class="home-document" itemscope itemtype="https://schema.org/Person">
+        <div id="main-content" class="page__content" itemprop="description">
+          {{ content }}
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 Tianle Fang. <span>Built with GitHub Pages.</span></p>
+    </footer>
+
+    <div class="companion" data-companion>
+      <div class="companion__bubble" role="status" aria-live="polite" hidden></div>
+      <button class="companion__button" type="button" aria-label="Hear from the fantasy bird companion">
+        <img class="companion__image companion__image--fallback"
+             src="{{ '/assets/images/pet/fantasy-bird.svg' | relative_url }}"
+             alt=""
+             aria-hidden="true">
+        <img class="companion__image companion__image--custom"
+             data-pet-src="{{ '/assets/images/pet/nero.png' | relative_url }}"
+             alt=""
+             aria-hidden="true"
+             hidden>
+      </button>
+    </div>
+
+    {% include scripts.html %}
+  </body>
+</html>
