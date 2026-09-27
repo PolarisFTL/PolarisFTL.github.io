@@ -60,7 +60,7 @@ redirect_from:
     <span class="section-heading__index" aria-hidden="true">01</span>
     <h2 id="about-heading">About Me</h2>
   </header>
-  <p class="section-lead">My research interests include object detection, multimodal RGB-T vision, object detection in adverse weather, and deep learning.</p>
+  <p class="section-lead">I am currently pursuing a Ph.D. at Jilin University. My research focus has evolved from remote sensing object detection during my undergraduate studies to object detection in adverse weather conditions during my master's program, and now to multimodal object detection for my doctoral research. My hobbies include cycling🏍️, photography📷, reading📖, and playing badminton🏸.</p>
 </section>
 
 <section id="news" class="academic-section section-anchor" aria-labelledby="news-heading">
