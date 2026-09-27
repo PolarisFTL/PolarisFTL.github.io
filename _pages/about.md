@@ -94,6 +94,7 @@ redirect_from:
       <div class="timeline__content">
         <h3>Luoyang Normal University</h3>
         <p>Bachelor of Engineering in Software Engineering</p>
+        <p>Bachelor of Science in Applied Psychology <span class="degree-note">Second Bachelor's Degree</span></p>
       </div>
     </li>
   </ol>
