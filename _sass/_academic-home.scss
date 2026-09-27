@@ -529,11 +529,11 @@ html[data-theme="academic"] .home-document::before {
 /* Content sections */
 
 .academic-section {
-  padding: clamp(2.35rem, 5vw, 4rem) 0 0;
+  padding: clamp(1.6rem, 3vw, 2.5rem) 0 0;
 }
 
 .academic-section + .academic-section {
-  margin-top: clamp(1.2rem, 2vw, 2rem);
+  margin-top: clamp(0.9rem, 1.5vw, 1.25rem);
   border-top: 1px solid var(--home-line);
 }
 
@@ -587,6 +587,14 @@ html[data-theme="academic"] .home-document::before {
   color: #3d4c42;
   font-size: clamp(1rem, 1.5vw, 1.08rem) !important;
   line-height: 1.82;
+}
+
+#about .section-lead {
+  max-width: none;
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 /* News */
@@ -1198,7 +1206,7 @@ html[data-theme="academic"] .site-footer {
   }
 
   .section-heading {
-    gap: 0.55rem;
+    gap: 1rem;
   }
 
   .section-heading__index::after {
