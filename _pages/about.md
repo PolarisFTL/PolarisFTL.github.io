@@ -181,15 +181,19 @@ redirect_from:
     <h2 id="awards-heading">Honors &amp; Awards</h2>
   </header>
   <ul class="award-list">
-    <li>
-      <time datetime="2025-10">2025.10</time>
-      <strong>Graduate National Scholarship</strong>
-    </li>
-    <li>
-       <time datetime="2025-05">2025.05</time>
-      <span><strong>Student Travel Award</strong><small>ICME 2025</small></span>
-    </li>
-  </ul>
+  <li>
+    <time datetime="2025-10">2025.10</time>
+    <strong>Graduate National Scholarship</strong>
+  </li>
+
+  <li>
+    <time datetime="2025-05">2025.05</time>
+    <span class="award-info">
+      <strong>Student Travel Award</strong>
+      <small>ICME 2025</small>
+    </span>
+  </li>
+</ul>
 </section>
 
 <section id="services" class="academic-section section-anchor" aria-labelledby="services-heading">
