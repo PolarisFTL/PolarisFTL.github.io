@@ -840,6 +840,19 @@ html[data-theme="academic"] .home-document::before {
 
 /* Awards */
 
+.award-info {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.award-info small {
+  display: inline;
+  font-size: 0.7em;
+  font-weight: 400;
+  color: #68716d;
+}
+
 .award-list {
   margin: 0;
   padding: 0;
