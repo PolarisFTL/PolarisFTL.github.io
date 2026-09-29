@@ -60,7 +60,7 @@ redirect_from:
     <span class="section-heading__index" aria-hidden="true">01</span>
     <h2 id="about-heading">About Me</h2>
   </header>
-  <p class="section-lead">I am currently pursuing a Ph.D. at Jilin University. My research focus has evolved from remote sensing object detection during my undergraduate studies to object detection in adverse weather conditions during my master's program, and now to multimodal object detection for my doctoral research. My hobbies include cycling🏍️, photography📷, reading📖, and playing badminton🏸.</p>
+  <p class="section-lead">I am currently pursuing a Ph.D. at Jilin University. My research focus has evolved from remote sensing object detection during my undergraduate studies to object detection in adverse weather conditions during my master's program, and now to multimodal object detection for my doctoral research. My hobbies include cycling 🏍️, photography 📷, reading 📖, and playing badminton 🏸.</p>
 </section>
 
 <section id="news" class="academic-section section-anchor" aria-labelledby="news-heading">
@@ -104,7 +104,7 @@ redirect_from:
   <header class="section-heading">
     <span class="section-heading__index" aria-hidden="true">04</span>
     <div>
-      <h2 id="publications-heading">Selected Publications</h2>
+      <h2 id="publications-heading">Publications</h2>
       <p>Research in robust object detection and image enhancement.</p>
     </div>
   </header>
@@ -182,7 +182,11 @@ redirect_from:
   </header>
   <ul class="award-list">
     <li>
-      <time datetime="2025-05">2025.05</time>
+      <time datetime="2025-10">2025.10</time>
+      <strong>Graduate National Scholarship</strong>
+    </li>
+    <li>
+       <time datetime="2025-05">2025.05</time>
       <span><strong>Student Travel Award</strong><small>ICME 2025</small></span>
     </li>
   </ul>
