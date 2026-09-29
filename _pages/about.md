@@ -217,6 +217,7 @@ redirect_from:
       <ul>
         <li><strong>IEEE TCSVT</strong></li>
         <li><strong>IEEE TCE</strong></li>
+        <li><strong>ACM TOMM</strong></li>
         <li><strong>KBS</strong></li>
       </ul>
     </div>
