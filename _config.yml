@@ -19,7 +19,7 @@ google_analytics_id: # get google_analytics_id from https://analytics.google.com
 # Homepage visits: enter the public GoatCounter site code (never an API token).
 goatcounter:
   enabled: true
-  code: ""
+  code: "polarisftl"
 
 # SEO Related
 google_site_verification: # get google_site_verification from https://search.google.com/search-console/about
