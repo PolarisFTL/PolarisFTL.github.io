@@ -1,4 +1,4 @@
-{% if page.url == '/' and site.goatcounter.enabled and site.goatcounter.code != '' and site.goatcounter.code %}
+{% if page.url == '/' and site.visitor_counter.provider != 'cloudflare' and site.goatcounter.enabled and site.goatcounter.code != '' and site.goatcounter.code %}
 <!-- Inert until the homepage module verifies production environment and host. -->
 <template id="cloverVisitorScript">
   <script data-goatcounter="https://{{ site.goatcounter.code | escape }}.goatcounter.com/count"

@@ -331,15 +331,6 @@
       return;
     }
 
-    var code = (widget.dataset.goatcounterCode || '').trim();
-    if (widget.dataset.goatcounterEnabled !== 'true' || !code) {
-      setUnavailable('Visitor counter is not configured.');
-      return;
-    }
-    if (!/^[a-z0-9][a-z0-9-]{0,62}$/.test(code)) {
-      setUnavailable('Visitor counter site code is invalid.');
-      return;
-    }
     var homePath = widget.dataset.homePath || '/';
     var site;
     try { site = new URL(widget.dataset.siteUrl); } catch (error) { return; }
@@ -348,7 +339,81 @@
 
     number.setAttribute('aria-busy', 'true');
     number.setAttribute('aria-label', 'Loading homepage visitor count');
-    var endpoint = 'https://' + code + '.goatcounter.com';
+    var provider = widget.dataset.visitorProvider || 'goatcounter';
+    var endpoint;
+    if (provider === 'cloudflare') {
+      try {
+        var worker = new URL(widget.dataset.visitorEndpoint);
+        if (worker.protocol !== 'https:' || worker.username || worker.password || worker.search || worker.hash ||
+            (worker.pathname !== '/' && worker.pathname !== '')) throw new Error('Invalid Worker URL');
+        endpoint = worker.origin;
+      } catch (error) {
+        setUnavailable('Visitor counter Worker URL is not configured.');
+        return;
+      }
+    } else {
+      var code = (widget.dataset.goatcounterCode || '').trim();
+      if (widget.dataset.goatcounterEnabled !== 'true' || !code || !/^[a-z0-9][a-z0-9-]{0,62}$/.test(code)) {
+        setUnavailable('Visitor counter is not configured.');
+        return;
+      }
+      endpoint = 'https://' + code + '.goatcounter.com';
+    }
+
+    function trackCloudflare() {
+      var token = null;
+      var now = Date.now();
+      var sessionStorageKey = 'clover-home-visitor-session';
+      var optedOut = false;
+      try { optedOut = localStorage.getItem('skipgc') === 't'; } catch (error) { /* Storage is optional. */ }
+      if (!optedOut && window.crypto && typeof window.crypto.getRandomValues === 'function') {
+        try {
+          var session = JSON.parse(sessionStorage.getItem(sessionStorageKey));
+          if (session && /^[a-f0-9]{32}$/.test(session.token) && Number.isFinite(session.expiresAt) && session.expiresAt > now &&
+              session.expiresAt <= now + 8 * 60 * 60 * 1000) token = session.token;
+        } catch (error) { /* Generate a short-lived, anonymous session when storage is unavailable. */ }
+        if (!token) {
+          var bytes = new Uint8Array(16);
+          window.crypto.getRandomValues(bytes);
+          token = Array.prototype.map.call(bytes, function (byte) { return byte.toString(16).padStart(2, '0'); }).join('');
+          try {
+            sessionStorage.setItem(sessionStorageKey, JSON.stringify({ token: token, expiresAt: now + 8 * 60 * 60 * 1000 }));
+          } catch (error) { /* The server still deduplicates this page's request. */ }
+        }
+      }
+      var controller = typeof AbortController === 'function' ? new AbortController() : null;
+      var settled = false;
+      var timer = window.setTimeout(function () {
+        settled = true;
+        if (controller) controller.abort();
+        setUnavailable('Visitor counter is unavailable.');
+      }, 8000);
+      var options = { credentials: 'omit', cache: 'no-store' };
+      if (controller) options.signal = controller.signal;
+      if (token) {
+        options.method = 'POST';
+        options.headers = { 'Content-Type': 'application/json' };
+        options.body = JSON.stringify({ path: '/', session: token });
+      }
+      fetch(endpoint + (token ? '/visit' : '/count'), options).then(function (response) {
+        if (!response.ok) throw new Error('Visitor counter request failed');
+        return response.json();
+      }).then(function (data) {
+        if (settled) return;
+        if (!data || !Number.isSafeInteger(data.count) || data.count < 0 || typeof data.counted !== 'boolean') {
+          throw new Error('Invalid visitor count');
+        }
+        settled = true;
+        window.clearTimeout(timer);
+        renderCount(data.count);
+        if (data.counted) showArrival();
+      }).catch(function () {
+        if (settled) return;
+        settled = true;
+        window.clearTimeout(timer);
+        setUnavailable('Visitor counter is unavailable.');
+      });
+    }
 
     function loadGoatCounter() {
       return new Promise(function (resolve, reject) {
@@ -424,6 +489,10 @@
     }
 
     function trackAndRead() {
+      if (provider === 'cloudflare') {
+        trackCloudflare();
+        return;
+      }
       loadGoatCounter().then(function (loaded) {
         var counter = loaded.counter;
         var filtered = typeof counter.filter !== 'function' || counter.filter();

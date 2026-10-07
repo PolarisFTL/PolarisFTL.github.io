@@ -2,7 +2,7 @@ name: Validate homepage
 
 on:
   push:
-    branches: [main, feature/clover-bgm-player, feature/clover-visitor-counter]
+    branches: [main, feature/clover-bgm-player, feature/clover-visitor-counter, codex/clover-realtime-counter]
   pull_request:
     branches: [main]
 

@@ -38,7 +38,7 @@ Open `http://127.0.0.1:4000/` in a browser.
 
 ### Clover visitor counter
 
-The Hero's Asta companion reads a real cumulative homepage visit count from GoatCounter and is visible only in Clover mode. Set `goatcounter.code` in `_config.yml` and enable **Allow adding visitor counts on your website** in GoatCounter Settings. No account or token is embedded; the delivered code leaves the site code blank. Local previews never send visits; `/?visitorDemo=1` demonstrates the one-time greeting. Public counts may be cached for up to four hours. See [configuration and behavior](docs/clover-visitor-counter.md).
+The Hero's Asta companion reads cumulative homepage sessions from a Cloudflare Worker with a SQLite-backed Durable Object. The server returns the committed count immediately and deduplicates each anonymous session for eight hours. Deploy [the counter service](cloudflare/visitor-counter/README.md), then fill the public `visitor_counter.endpoint` in `_config.yml`. This URL contains no credential. The artwork is visible only in Clover mode; visits are recorded in both themes. Local previews send no real visits. GoatCounter remains an optional fallback. See [configuration and behavior](docs/clover-visitor-counter.md).
 
 Pushing the `main` branch to `PolarisFTL/PolarisFTL.github.io` triggers GitHub Pages deployment. The public site is available at:
 

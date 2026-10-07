@@ -1,0 +1,15 @@
+name = "clover-homepage-counter"
+main = "src/index.js"
+compatibility_date = "2026-10-07"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGIN = "https://polarisftl.github.io"
+
+[[durable_objects.bindings]]
+name = "VISITORS"
+class_name = "HomepageCounter"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["HomepageCounter"]
