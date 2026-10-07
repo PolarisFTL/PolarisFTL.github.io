@@ -1,5 +1,7 @@
 <aside class="clover-visitor-counter" id="cloverVisitorCounter"
        aria-label="Homepage visitor count"
+       data-visitor-provider="{{ site.visitor_counter.provider | default: 'goatcounter' | escape }}"
+       data-visitor-endpoint="{{ site.visitor_counter.endpoint | escape }}"
        data-goatcounter-enabled="{{ site.goatcounter.enabled | default: false }}"
        data-goatcounter-code="{{ site.goatcounter.code | escape }}"
        data-site-url="{{ site.url | escape }}"

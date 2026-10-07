@@ -2,7 +2,25 @@
 
 The left side of the existing Hero has a 150 × 150 px Asta visitor companion above the portrait on desktop. At narrower desktop/tablet widths the BGM stays below the Hero; on mobile the order is portrait, academic information, visitors, BGM. Academic mode and print hide the visitor artwork completely. The counter never accesses the audio element or BGM preferences.
 
-## Enable real visits
+## Cloudflare counter (current provider)
+
+The current provider is a small Cloudflare Worker plus a SQLite-backed Durable Object, compatible with Workers Free. The existing Hero markup, artwork, SCSS, BGM and theme behavior are preserved. Setup and Mac commands are in [the service README](../cloudflare/visitor-counter/README.md).
+
+Deploy the service, then run `node cloudflare/visitor-counter/configure-homepage.mjs https://YOUR-WORKER.YOUR-ACCOUNT.workers.dev` from the repository root. It checks `/count` without incrementing anything and writes only the public `visitor_counter.endpoint` in `_config.yml`. The endpoint is intentionally blank until an actual deployment exists.
+
+- A visit to the production homepage sends one `POST /visit`. The response contains `{ "count": 1, "counted": true }` only after the SQLite transaction commits. The board displays that returned number. There is no four-hour public-counter cache.
+- An anonymous 128-bit random token lives in `sessionStorage` for up to eight hours. Only its SHA-256 hash and expiry are stored on the server. SQLite deduplication also covers concurrent/repeated requests; the front end is not the source of truth. Expired token hashes are removed on subsequent visits. No IP, fingerprint, account, email or stable device identifier is collected by this counter code.
+- This measures anonymous homepage browser sessions. Tabs/storage resets may create separate sessions. It is not a lifetime count of distinct people. Known crawler User-Agent strings are excluded; this small service does not provide GoatCounter's full analytics or comprehensive bot filtering.
+- The `+1` greeting runs only when the server returns `counted: true`, subject to the existing session greeting flag, theme and reduced-motion preference. Academic still records a visit while keeping the widget hidden. Switching themes never sends an additional visit or starts music.
+- There is no persistent socket or polling. Opening/reloading the homepage reads the latest committed total. Errors or an eight-second timeout show `------`, with one warning and no retry loop. The module uses no third-party tracking script when Cloudflare is selected.
+- `localhost`, preview hosts and nonproduction builds send no real requests. The existing local `?visitorDemo=1` remains explicitly labelled. Existing `skipgc=t` opt-out is honored by reading `GET /count` without recording a visit.
+- CORS permits the configured homepage origin. Origin checks deter accidental cross-site calls; a public endpoint cannot authenticate a human visit or completely prevent fabricated requests. The service has no public reset/set-count method and no credentials in frontend code.
+
+## Optional GoatCounter fallback
+
+To select the original provider, set `visitor_counter.provider: "goatcounter"`. Its setup and caching behavior are described below.
+
+### Enable GoatCounter visits
 
 1. Create a site at [GoatCounter](https://www.goatcounter.com/). A site such as `example.goatcounter.com` has site code `example`.
 2. In `_config.yml`, set the public site code:
@@ -16,7 +34,7 @@ The left side of the existing Hero has a 150 × 150 px Asta visitor companion ab
 3. In GoatCounter **Settings**, enable **Allow adding visitor counts on your website**. Leave session tracking enabled under **Data collection → Sessions**.
 4. Build/deploy the site in production (`JEKYLL_ENV=production`). GitHub Pages supplies the production environment. If you change the public domain, update the existing `url` in `_config.yml` as well.
 
-Only the public site code is needed. No API token, GitHub credential, or account password belongs in the site configuration or JavaScript. The code is deliberately blank in the delivered source because no GoatCounter site was provided.
+Only the public site code is needed. No API token, GitHub credential, or account password belongs in the site configuration or JavaScript. The existing `polarisftl` site code is retained.
 
 ## Counting behavior and limitations
 

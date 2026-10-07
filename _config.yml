@@ -16,10 +16,15 @@ google_scholar_stats_use_cdn: false
 # google analytics
 google_analytics_id: # get google_analytics_id from https://analytics.google.com/analytics/
 
-# Homepage visits: enter the public GoatCounter site code (never an API token).
+# Optional GoatCounter fallback; the selected provider below controls loading.
 goatcounter:
   enabled: true
   code: "polarisftl"
+
+# The public HTTPS Worker URL, filled after deploying cloudflare/visitor-counter.
+visitor_counter:
+  provider: "cloudflare"
+  endpoint: "https://clover-homepage-counter.clover-homepage-counter.workers.dev"
 
 # SEO Related
 google_site_verification: # get google_site_verification from https://search.google.com/search-console/about
@@ -71,6 +76,7 @@ include:
   - _pages
   - files
 exclude:
+  - cloudflare
   - docs
   - google_scholar_crawler
   - "*.sublime-project"
