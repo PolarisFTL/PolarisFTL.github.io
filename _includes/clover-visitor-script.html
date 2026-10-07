@@ -1,0 +1,9 @@
+{% if page.url == '/' and site.goatcounter.enabled and site.goatcounter.code != '' and site.goatcounter.code %}
+<!-- Inert until the homepage module verifies production environment and host. -->
+<template id="cloverVisitorScript">
+  <script data-goatcounter="https://{{ site.goatcounter.code | escape }}.goatcounter.com/count"
+          data-goatcounter-settings='{"no_onload":true,"no_events":true,"path":"/"}'
+          src="https://gc.zgo.at/count.v5.js" async crossorigin="anonymous"
+          integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ"></script>
+</template>
+{% endif %}

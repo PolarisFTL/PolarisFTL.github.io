@@ -870,6 +870,197 @@ html[data-theme="academic"] .clover-music-consent {
   }
 }
 
+/* Clover homepage visitor companion */
+
+.clover-visitor-counter {
+  position: relative;
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 150px;
+  height: 150px;
+  max-width: 100%;
+  isolation: isolate;
+}
+
+html[data-theme="academic"] .clover-visitor-counter {
+  display: none;
+}
+
+.clover-visitor-character {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 90%;
+}
+
+.clover-visitor-character__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.clover-visitor-character__image[hidden],
+.clover-visitor-character__fallback[hidden] {
+  display: none;
+}
+
+.clover-visitor-character__fallback {
+  position: absolute;
+  inset: 0 0 35%;
+  display: grid;
+  place-items: center;
+  color: #245c3a;
+  font-family: Georgia, serif;
+  font-size: 4.5rem;
+  text-shadow: 0 2px 0 #d7c28c;
+}
+
+.clover-visitor-board {
+  position: absolute;
+  left: 22%;
+  top: 61.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  width: 56%;
+  height: 19.5%;
+  padding: 1px 3px;
+  color: #eee5cf;
+  background: rgba(13, 27, 20, 0.35);
+  border-radius: 2px;
+  transform-origin: 50% 15%;
+}
+
+.clover-visitor-board__label {
+  color: #d7c28c;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.clover-visitor-board__number {
+  display: block;
+  max-width: 100%;
+  color: #f3ead7;
+  font-size: 17px;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: 0.025em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  // Override the template's global transition so large totals fit immediately.
+  transition: none;
+}
+
+.clover-visitor-board__plus {
+  position: absolute;
+  top: -14px;
+  right: -6px;
+  color: #245c3a;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: 0 1px 3px #fffef9;
+}
+
+.clover-visitor-counter.has-mascot-fallback .clover-visitor-board {
+  left: 10%;
+  top: 58%;
+  width: 80%;
+  height: 27%;
+  background: linear-gradient(145deg, #172d21, #0d1b14);
+  border: 1px solid #b49a63;
+  border-radius: 5px;
+}
+
+.clover-visitor-counter.is-loaded .clover-visitor-board__number {
+  animation: clover-visitor-count-in 220ms ease-out both;
+}
+
+.clover-visitor-counter.is-arriving .clover-visitor-character {
+  animation: clover-visitor-jump 700ms ease-in-out both;
+}
+
+.clover-visitor-counter.is-arriving .clover-visitor-board {
+  animation: clover-visitor-board-pulse 700ms ease-out both;
+}
+
+.clover-visitor-counter.is-arriving .clover-visitor-board__plus {
+  animation: clover-visitor-plus 850ms ease-out both;
+}
+
+@keyframes clover-visitor-count-in {
+  from { opacity: 0.4; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes clover-visitor-jump {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  38% { transform: translateY(-8px) rotate(-2deg); }
+  65% { transform: translateY(2px) rotate(1deg); }
+}
+
+@keyframes clover-visitor-board-pulse {
+  0%, 100% { transform: scale(1) rotate(0); }
+  38% { transform: scale(1.035) rotate(-1deg); }
+  65% { transform: scale(1) rotate(1deg); }
+}
+
+@keyframes clover-visitor-plus {
+  0% { opacity: 0; transform: translateY(6px) scale(0.7); }
+  25% { opacity: 1; transform: translateY(0) scale(1.15); }
+  100% { opacity: 0; transform: translateY(-18px) scale(1); }
+}
+
+@media (min-width: 701px) {
+  html[data-theme="clover"] .profile-hero {
+    row-gap: 0.8rem;
+  }
+
+  html[data-theme="clover"] .profile-hero__portrait-wrap {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  html[data-theme="clover"] .profile-hero__content {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+
+  .clover-visitor-counter {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+  }
+
+  .clover-music-player {
+    grid-row: 3;
+  }
+}
+
+@media (min-width: 1120px) {
+  .clover-music-player {
+    grid-row: 1 / 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clover-visitor-counter *,
+  .clover-visitor-counter *::before,
+  .clover-visitor-counter *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* Content sections */
 
 .academic-section {
@@ -1647,6 +1838,7 @@ html[data-theme="academic"] .site-footer {
   .companion,
   .clover-music-player,
   .clover-music-consent,
+  .clover-visitor-counter,
   .theme-toggle,
   .site-footer {
     display: none !important;

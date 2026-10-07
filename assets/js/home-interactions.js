@@ -7,6 +7,7 @@
   var themeToggle = document.querySelector('.theme-toggle');
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   var cloverMusic = initCloverMusicPlayer();
+  initCloverVisitorCounter();
 
   function setNavigation(open) {
     if (!navToggle || !navigation) return;
@@ -257,6 +258,190 @@
         }
       }
     };
+  }
+
+  function initCloverVisitorCounter() {
+    var widget = document.getElementById('cloverVisitorCounter');
+    if (!widget || widget.dataset.initialized === 'true') return;
+    var number = widget.querySelector('#cloverVisitorNumber');
+    if (!number) return;
+    widget.dataset.initialized = 'true';
+
+    var image = widget.querySelector('[data-visitor-image]');
+    var fallback = widget.querySelector('[data-visitor-fallback]');
+    function showMascotFallback() {
+      if (image) image.hidden = true;
+      if (fallback) fallback.hidden = false;
+      widget.classList.add('has-mascot-fallback');
+    }
+    if (image) {
+      image.addEventListener('error', showMascotFallback);
+      if (image.complete && !image.naturalWidth) showMascotFallback();
+    }
+
+    var sessionKey = 'clover-home-visitor-seen';
+    var warned = false;
+    function setUnavailable(message) {
+      number.textContent = '------';
+      number.setAttribute('aria-label', 'Visitor count unavailable');
+      number.setAttribute('aria-busy', 'false');
+      widget.classList.remove('is-loaded', 'is-arriving');
+      if (!warned && window.console && typeof window.console.warn === 'function') {
+        warned = true;
+        window.console.warn(message);
+      }
+    }
+
+    function renderCount(count) {
+      var text = count < 1000000 ? String(count).padStart(6, '0') : count.toLocaleString('en-US');
+      number.textContent = text;
+      number.style.fontSize = text.length > 6 ? Math.max(5, 17 * 6 / text.length) + 'px' : '';
+      number.setAttribute('aria-label', count.toLocaleString('en-US') + ' homepage visits');
+      number.setAttribute('aria-busy', 'false');
+      widget.classList.add('is-loaded');
+    }
+
+    function showArrival() {
+      var seen = false;
+      try {
+        seen = sessionStorage.getItem(sessionKey) === 'true';
+        sessionStorage.setItem(sessionKey, 'true');
+      } catch (error) {
+        // No extra tracking or persistent identifier when session storage is blocked.
+      }
+      if (seen || reduceMotion.matches || root.getAttribute('data-theme') !== 'clover') return;
+      widget.classList.add('is-arriving');
+      window.setTimeout(function () { widget.classList.remove('is-arriving'); }, 900);
+    }
+
+    var local = /^(localhost|127(?:\.\d+){3}|\[?::1\]?)$/.test(location.hostname) || /\.localhost$/.test(location.hostname);
+    if (local) {
+      number.textContent = 'DEV';
+      number.setAttribute('aria-label', 'Visitor counter preview; no visits are recorded');
+      if (new URLSearchParams(location.search).get('visitorDemo') === '1') {
+        var demoLabel = widget.querySelector('.clover-visitor-board__label');
+        if (demoLabel) demoLabel.textContent = 'Demo visits';
+        number.setAttribute('aria-label', 'Loading visitor counter demonstration');
+        window.setTimeout(function () {
+          renderCount(1248);
+          number.setAttribute('aria-label', 'Local demonstration: 1,248. No visits are recorded.');
+          showArrival();
+        }, 350);
+      }
+      return;
+    }
+
+    var code = (widget.dataset.goatcounterCode || '').trim();
+    if (widget.dataset.goatcounterEnabled !== 'true' || !code) {
+      setUnavailable('Visitor counter is not configured.');
+      return;
+    }
+    if (!/^[a-z0-9][a-z0-9-]{0,62}$/.test(code)) {
+      setUnavailable('Visitor counter site code is invalid.');
+      return;
+    }
+    var homePath = widget.dataset.homePath || '/';
+    var site;
+    try { site = new URL(widget.dataset.siteUrl); } catch (error) { return; }
+    if (widget.dataset.production !== 'true' || location.protocol !== 'https:' || location.hostname !== site.hostname ||
+        (location.pathname !== homePath && location.pathname !== homePath + 'index.html')) return;
+
+    number.setAttribute('aria-busy', 'true');
+    number.setAttribute('aria-label', 'Loading homepage visitor count');
+    var endpoint = 'https://' + code + '.goatcounter.com';
+
+    function loadGoatCounter() {
+      return new Promise(function (resolve, reject) {
+        var existing = document.querySelector('script[data-goatcounter]');
+        if (existing) {
+          // Reuse an already active integration without sending a second pageview.
+          if (existing.dataset.goatcounter === endpoint + '/count' && window.goatcounter &&
+              typeof window.goatcounter.count === 'function') resolve({ counter: window.goatcounter, manual: false });
+          else reject(new Error('Tracking script already present but unavailable'));
+          return;
+        }
+        var template = document.getElementById('cloverVisitorScript');
+        var source = template && template.content && template.content.querySelector('script');
+        if (!source || source.dataset.goatcounter !== endpoint + '/count') {
+          reject(new Error('Tracking script not configured'));
+          return;
+        }
+        var script = document.createElement('script');
+        Array.prototype.forEach.call(source.attributes, function (attribute) {
+          script.setAttribute(attribute.name, attribute.value);
+        });
+        var settled = false;
+        var timer = window.setTimeout(function () { finish(new Error('Tracking script timed out')); }, 4000);
+        function finish(error) {
+          if (settled) return;
+          settled = true;
+          window.clearTimeout(timer);
+          script.onload = script.onerror = null;
+          if (error) { script.remove(); reject(error); }
+          else if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+            resolve({ counter: window.goatcounter, manual: true });
+          } else reject(new Error('Tracking API unavailable'));
+        }
+        script.onload = function () { finish(); };
+        script.onerror = function () { finish(new Error('Tracking script blocked')); };
+        document.head.appendChild(script);
+      });
+    }
+
+    function readCount() {
+      // The public endpoint can be cached. Never calculate a fake increment locally.
+      return new Promise(function (resolve, reject) {
+        var controller = typeof AbortController === 'function' ? new AbortController() : null;
+        var settled = false;
+        var timer = window.setTimeout(function () {
+          settled = true;
+          if (controller) controller.abort();
+          reject(new Error('Visitor count timed out'));
+        }, 4000);
+        var options = { credentials: 'omit' };
+        if (controller) options.signal = controller.signal;
+        fetch(endpoint + '/counter/' + encodeURIComponent('/') + '.json', options)
+          .then(function (response) {
+            if (!response.ok) throw new Error('Visitor count unavailable');
+            return response.json();
+          }).then(function (data) {
+            if (settled) return;
+            var value = data && data.count;
+            var text = typeof value === 'number' ? String(value) : (typeof value === 'string' ? value.trim() : '');
+            if (!/^(\d+|\d{1,3}(,\d{3})+)$/.test(text)) throw new Error('Invalid visitor count');
+            var count = Number(text.replace(/,/g, ''));
+            if (!Number.isSafeInteger(count) || count < 0) throw new Error('Invalid visitor count');
+            settled = true;
+            window.clearTimeout(timer);
+            resolve(count);
+          }).catch(function (error) {
+            if (settled) return;
+            settled = true;
+            window.clearTimeout(timer);
+            reject(error);
+          });
+      });
+    }
+
+    function trackAndRead() {
+      loadGoatCounter().then(function (loaded) {
+        var counter = loaded.counter;
+        var filtered = typeof counter.filter !== 'function' || counter.filter();
+        if (!filtered && loaded.manual) counter.count({ path: '/' });
+        return readCount().then(function (count) {
+          renderCount(count);
+          // Arrival is a greeting, not proof the cached total has increased by one.
+          if (!filtered) showArrival();
+        });
+      }).catch(function () { setUnavailable('Visitor counter is unavailable.'); });
+    }
+    if (document.visibilityState === 'hidden' || document.prerendering) {
+      document.addEventListener('visibilitychange', function onVisible() {
+        if (document.visibilityState !== 'visible' || document.prerendering) return;
+        document.removeEventListener('visibilitychange', onVisible);
+        trackAndRead();
+      });
+    } else trackAndRead();
   }
 
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('[data-nav-section]'));
