@@ -526,6 +526,350 @@ html[data-theme="academic"] .home-document::before {
   transform: translateY(-1px);
 }
 
+/* Clover BGM: a quiet, self-contained addition to the profile. */
+
+.clover-music-player {
+  --clover-music-gold: #d7c28c;
+  --clover-music-muted: #bdc9bf;
+  position: relative;
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 248px;
+  max-width: 100%;
+  min-width: 0;
+  padding: 1rem;
+  color: #f1f3e9;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 0, rgba(68, 111, 71, 0.2), transparent 75%),
+    linear-gradient(145deg, rgba(20, 38, 27, 0.96), rgba(10, 20, 15, 0.97));
+  border: 1px solid rgba(167, 120, 45, 0.45);
+  border-radius: 16px 16px 16px 5px;
+  box-shadow: 0 12px 28px rgba(12, 30, 19, 0.14), inset 0 0 0 4px rgba(215, 194, 140, 0.035);
+}
+
+html[data-theme="academic"] .clover-music-player,
+html[data-theme="academic"] .clover-music-consent {
+  display: none;
+}
+
+.clover-music-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  min-height: 1rem;
+  line-height: 1.3;
+}
+
+.clover-music-label {
+  color: var(--clover-music-gold);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.clover-music-label span {
+  margin-right: 0.2rem;
+  font-size: 0.85rem;
+}
+
+.clover-music-status {
+  color: var(--clover-music-muted);
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.clover-music-player.is-playing .clover-music-status {
+  color: #d7c28c;
+}
+
+.clover-music-disc {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  margin: 0.9rem auto 0.8rem;
+  padding: 7px;
+  overflow: hidden;
+  border: 1px solid rgba(215, 194, 140, 0.7);
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, #121713 0, #121713 2px, #2b322a 3px, #121713 4px);
+  box-shadow: 0 9px 24px rgba(0, 0, 0, 0.35);
+  animation: clover-disc-spin 12s linear infinite;
+  animation-play-state: paused;
+}
+
+.clover-music-player.is-playing .clover-music-disc {
+  animation-play-state: running;
+}
+
+.clover-music-cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.clover-music-disc::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border: 3px solid #bba471;
+  border-radius: 50%;
+  background: #0e1b13;
+  box-shadow: 0 0 0 5px rgba(13, 22, 16, 0.45);
+  transform: translate(-50%, -50%);
+}
+
+.clover-music-info .clover-music-title {
+  margin: 0 !important;
+  color: #f1f3e9;
+  font-size: 1.02rem !important;
+  font-weight: 650;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+
+.clover-music-info .clover-music-artist {
+  margin: 0.12rem 0 0.85rem !important;
+  color: var(--clover-music-muted);
+  font-size: 0.61rem !important;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+}
+
+.clover-music-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(215, 194, 140, 0.16);
+}
+
+.clover-music-controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  flex: 0 0 auto;
+  min-height: 36px;
+  margin: 0;
+  padding: 0.4rem 0.55rem;
+  color: #17271c;
+  font-family: inherit;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+  border: 1px solid rgba(215, 194, 140, 0.55);
+  border-radius: 6px;
+  background: var(--clover-music-gold);
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.clover-music-controls .clover-music-play {
+  min-width: 65px;
+}
+
+.clover-music-controls .clover-music-mute {
+  width: 36px;
+  padding: 0;
+  color: var(--clover-music-muted);
+  border-color: rgba(215, 194, 140, 0.2);
+  background: transparent;
+}
+
+.clover-music-controls button:hover:not(:disabled) {
+  background: #e3d1a5;
+  color: #17271c;
+}
+
+.clover-music-controls button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.academic-home .page__content .clover-music-video {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  min-height: 36px;
+  color: var(--clover-music-gold);
+  font-size: 0.6rem;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.academic-home .page__content .clover-music-video:hover {
+  color: #fff2c9;
+  text-decoration: underline;
+}
+
+.clover-music-player .clover-music-fallback {
+  margin: 0.65rem 0 0;
+  color: var(--clover-music-muted);
+  font-size: 0.65rem !important;
+  line-height: 1.5;
+}
+
+@keyframes clover-disc-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Native dialog supplies focus containment, inert background, and Escape. */
+
+.clover-music-consent {
+  position: fixed;
+  width: 360px;
+  max-width: calc(100% - 2rem);
+  max-height: calc(100% - 2rem);
+  margin: auto;
+  padding: 1.8rem 1.5rem 1.35rem;
+  overflow-y: auto;
+  color: #f1f3e9;
+  font-family: inherit;
+  text-align: center;
+  background: linear-gradient(145deg, #182e20, #0c1710);
+  border: 1px solid rgba(215, 194, 140, 0.5);
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4), inset 0 0 0 5px rgba(215, 194, 140, 0.025);
+}
+
+.clover-music-consent:not([open]) {
+  display: none;
+}
+
+.clover-music-consent::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.clover-music-consent__clover {
+  display: block;
+  color: #d7c28c;
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  line-height: 1;
+  opacity: 0.65;
+}
+
+.clover-music-consent__eyebrow {
+  margin: 0.8rem 0 0.5rem;
+  color: #d7c28c;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.clover-music-consent h2 {
+  margin: 0 0 0.75rem;
+  color: #f1f3e9;
+  font-size: 1.2rem;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.clover-music-consent p {
+  line-height: 1.6;
+}
+
+#clover-music-consent-description {
+  margin: 0;
+  color: #c2cec4;
+  font-size: 0.8rem;
+}
+
+.clover-music-consent__track {
+  margin: 0.35rem 0 1.3rem;
+  color: #e0d3af;
+  font-size: 0.8rem;
+}
+
+.clover-music-consent__actions {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.clover-music-consent__actions button {
+  min-height: 44px;
+  padding: 0.65rem;
+  font-family: inherit;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  border: 1px solid rgba(215, 194, 140, 0.25);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.clover-music-consent__allow {
+  color: #17271c;
+  font-weight: 750;
+  background: #d7c28c;
+}
+
+.clover-music-consent__allow i {
+  margin-right: 0.35rem;
+}
+
+.clover-music-consent__allow:hover {
+  background: #e3d1a5;
+}
+
+.clover-music-consent__deny {
+  color: #d4dfd5;
+  background: transparent;
+}
+
+.clover-music-consent__deny:hover {
+  background: rgba(215, 194, 140, 0.08);
+}
+
+.clover-music-consent .clover-music-consent__note {
+  margin: 1rem 0 0;
+  color: #aebdb1;
+  font-size: 0.62rem;
+}
+
+@media (min-width: 1120px) {
+  html[data-theme="clover"] .profile-hero {
+    grid-template-columns: 180px minmax(0, 1fr) 248px;
+    column-gap: 1.75rem;
+  }
+
+  .clover-music-player {
+    grid-column: 3;
+  }
+}
+
+@media (max-width: 700px) {
+  .clover-music-disc {
+    width: 112px;
+    height: 112px;
+  }
+
+  .clover-music-controls button,
+  .academic-home .page__content .clover-music-video {
+    min-height: 44px;
+  }
+
+  .clover-music-controls .clover-music-mute {
+    width: 44px;
+  }
+}
+
 /* Content sections */
 
 .academic-section {
@@ -1264,6 +1608,10 @@ html[data-theme="academic"] .site-footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .clover-music-disc {
+    animation: none !important;
+  }
+
   :root {
     scroll-behavior: auto;
   }
@@ -1297,6 +1645,8 @@ html[data-theme="academic"] .site-footer {
   body.academic-home::after,
   .academic-home .masthead,
   .companion,
+  .clover-music-player,
+  .clover-music-consent,
   .theme-toggle,
   .site-footer {
     display: none !important;

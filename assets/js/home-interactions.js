@@ -6,6 +6,7 @@
   var navigation = document.querySelector('.site-navigation');
   var themeToggle = document.querySelector('.theme-toggle');
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var cloverMusic = initCloverMusicPlayer();
 
   function setNavigation(open) {
     if (!navToggle || !navigation) return;
@@ -51,6 +52,8 @@
         /* Theme switching still works when storage is unavailable. */
       }
     }
+
+    if (cloverMusic) cloverMusic.handleThemeChange(isClover);
   }
 
   applyTheme(root.getAttribute('data-theme') === 'academic' ? 'academic' : 'clover', false);
@@ -59,6 +62,201 @@
     themeToggle.addEventListener('click', function () {
       applyTheme(root.getAttribute('data-theme') === 'clover' ? 'academic' : 'clover', true);
     });
+  }
+
+  function initCloverMusicPlayer() {
+    var audio = document.getElementById('cloverBgmAudio');
+    var player = document.querySelector('[data-clover-music]');
+    var modal = document.querySelector('[data-music-consent]');
+    if (!audio || !player || !modal) return null;
+
+    var playButton = player.querySelector('[data-music-play]');
+    var playIcon = player.querySelector('[data-music-play-icon]');
+    var playLabel = player.querySelector('[data-music-play-label]');
+    var muteButton = player.querySelector('[data-music-mute]');
+    var muteIcon = player.querySelector('[data-music-mute-icon]');
+    var status = player.querySelector('[data-music-status]');
+    var allowButton = modal.querySelector('[data-music-allow]');
+    var denyButton = modal.querySelector('[data-music-deny]');
+    if (!playButton || !muteButton || !status || !allowButton || !denyButton) return null;
+
+    function readPreference(key) {
+      try { return localStorage.getItem(key); } catch (error) { return null; }
+    }
+
+    function savePreference(key, value) {
+      try { localStorage.setItem(key, value); } catch (error) {
+        /* The current visit still works when storage is blocked. */
+      }
+    }
+
+    var consent = readPreference('clover-bgm-consent');
+    if (consent !== 'allow' && consent !== 'deny') consent = null;
+    var unavailable = false;
+    var themeInitialized = false;
+    var consentTimer;
+    var returnFocus;
+    var playRequest = 0;
+    var wantsPlayback = false;
+    audio.volume = 0.35;
+    audio.muted = readPreference('clover-bgm-muted') === 'true';
+
+    function isClover() {
+      return root.getAttribute('data-theme') === 'clover';
+    }
+
+    function setPlayingState() {
+      var playing = !unavailable && !audio.paused && !audio.ended;
+      player.classList.toggle('is-playing', playing);
+      status.textContent = unavailable ? 'BGM UNAVAILABLE' : (playing ? 'NOW PLAYING' : 'PAUSED');
+      playButton.disabled = unavailable;
+      playButton.setAttribute('aria-label', unavailable ? 'Background music unavailable' : (playing ? 'Pause background music' : 'Play background music'));
+      if (playIcon) playIcon.className = playing ? 'fas fa-pause' : 'fas fa-play';
+      if (playLabel) playLabel.textContent = playing ? 'Pause' : 'Play';
+    }
+
+    function setMutedState() {
+      muteButton.setAttribute('aria-pressed', String(audio.muted));
+      muteButton.setAttribute('aria-label', audio.muted ? 'Unmute background music' : 'Mute background music');
+      if (muteIcon) muteIcon.className = audio.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+    }
+
+    function closeConsent(restoreFocus) {
+      window.clearTimeout(consentTimer);
+      if (!modal.open) return;
+      modal.close();
+      if (restoreFocus !== false && returnFocus && returnFocus.isConnected && returnFocus.getClientRects().length) {
+        returnFocus.focus({ preventScroll: true });
+      }
+    }
+
+    function pauseBgm() {
+      wantsPlayback = false;
+      playRequest += 1;
+      audio.pause();
+      setPlayingState();
+    }
+
+    function markUnavailable() {
+      unavailable = true;
+      pauseBgm();
+      muteButton.disabled = true;
+      playButton.title = 'Listen using Official Video instead.';
+      closeConsent();
+    }
+
+    function handlePlaybackError(error, request) {
+      if (request !== playRequest) return;
+      if (audio.error || (error && error.name === 'NotSupportedError')) markUnavailable();
+      else pauseBgm();
+      // Autoplay denial and interrupted playback need no retry or alert.
+    }
+
+    function playBgm(userInitiated) {
+      if (!isClover() || unavailable) return;
+      if (userInitiated) {
+        consent = 'allow';
+        savePreference('clover-bgm-consent', consent);
+      }
+      if (consent !== 'allow') return;
+      wantsPlayback = true;
+      var request = ++playRequest;
+      // Call play directly in the click handler to preserve the user gesture.
+      var attempt;
+      try { attempt = audio.play(); } catch (error) {
+        handlePlaybackError(error, request);
+        return;
+      }
+      if (attempt && typeof attempt.then === 'function') {
+        attempt.then(function () {
+          // An older promise must not pause a newer user-initiated play.
+          if (request !== playRequest) return;
+          if (!isClover() || !wantsPlayback) audio.pause();
+          setPlayingState();
+        }).catch(function (error) {
+          handlePlaybackError(error, request);
+        });
+      }
+    }
+
+    function openConsent() {
+      if (!isClover() || consent !== null || unavailable || modal.open) return;
+      // Older browsers retain the manual Play button without a blocking overlay.
+      if (typeof modal.showModal !== 'function') return;
+      returnFocus = document.activeElement;
+      modal.showModal();
+      denyButton.focus({ preventScroll: true });
+    }
+
+    function denyMusic() {
+      consent = 'deny';
+      savePreference('clover-bgm-consent', consent);
+      pauseBgm();
+      closeConsent();
+    }
+
+    playButton.addEventListener('click', function () {
+      if (audio.paused || audio.ended) playBgm(true);
+      else pauseBgm();
+    });
+
+    muteButton.addEventListener('click', function () {
+      audio.muted = !audio.muted;
+      savePreference('clover-bgm-muted', String(audio.muted));
+      setMutedState();
+    });
+
+    allowButton.addEventListener('click', function () {
+      playBgm(true);
+      closeConsent();
+    });
+    denyButton.addEventListener('click', denyMusic);
+    modal.addEventListener('cancel', function (event) {
+      event.preventDefault();
+      denyMusic();
+    });
+    modal.addEventListener('keydown', function (event) {
+      if (event.key !== 'Tab') return;
+      if (event.shiftKey && document.activeElement === allowButton) {
+        event.preventDefault();
+        denyButton.focus();
+      } else if (!event.shiftKey && document.activeElement === denyButton) {
+        event.preventDefault();
+        allowButton.focus();
+      }
+    });
+
+    ['play', 'playing', 'pause', 'ended'].forEach(function (eventName) {
+      audio.addEventListener(eventName, function () {
+        if (!audio.paused && (!isClover() || consent !== 'allow' || !wantsPlayback)) pauseBgm();
+        else setPlayingState();
+      });
+    });
+    audio.addEventListener('volumechange', setMutedState);
+    audio.addEventListener('error', markUnavailable);
+    window.addEventListener('pagehide', pauseBgm);
+
+    muteButton.disabled = false;
+    setMutedState();
+    setPlayingState();
+    if (audio.error) markUnavailable();
+
+    return {
+      handleThemeChange: function (clover) {
+        var firstTheme = !themeInitialized;
+        themeInitialized = true;
+        window.clearTimeout(consentTimer);
+        if (!clover) {
+          pauseBgm();
+          closeConsent(false);
+        } else if (consent === null) {
+          consentTimer = window.setTimeout(openConsent, 450);
+        } else if (consent === 'allow' && firstTheme) {
+          // One attempt on a returning visit; switching themes never resumes BGM.
+          playBgm(false);
+        }
+      }
+    };
   }
 
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('[data-nav-section]'));
