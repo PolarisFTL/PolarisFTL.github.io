@@ -1,0 +1,34 @@
+<aside class="clover-music-player" data-clover-music aria-label="Clover background music">
+  <div class="clover-music-heading">
+    <span class="clover-music-label"><span aria-hidden="true">♣</span> Clover BGM</span>
+    <span class="clover-music-status" data-music-status role="status" aria-live="polite">PAUSED</span>
+  </div>
+
+  <div class="clover-music-disc" aria-hidden="true">
+    <img class="clover-music-cover"
+         src="{{ '/assets/images/music/kienai-riyuu-cover.jpg' | relative_url }}"
+         alt=""
+         width="480"
+         height="480"
+         decoding="async">
+  </div>
+
+  <div class="clover-music-info">
+    <p class="clover-music-title" lang="ja">消えない理由</p>
+    <p class="clover-music-artist">WANIMA</p>
+  </div>
+
+  <div class="clover-music-controls">
+    <button class="clover-music-play" data-music-play type="button" aria-label="Play background music" disabled>
+      <i class="fas fa-play" data-music-play-icon aria-hidden="true"></i>
+      <span data-music-play-label>Play</span>
+    </button>
+    <button class="clover-music-mute" data-music-mute type="button" aria-label="Mute background music" aria-pressed="false" disabled>
+      <i class="fas fa-volume-up" data-music-mute-icon aria-hidden="true"></i>
+    </button>
+    <a class="clover-music-video" href="https://youtu.be/9QyiEgv33z4?si=Yy8DwO0ML-P08L13" target="_blank" rel="noopener noreferrer">Official Video <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <audio id="cloverBgmAudio" src="{{ '/assets/audio/kienai-riyuu.mp3' | relative_url }}" loop preload="metadata"></audio>
+  <noscript><p class="clover-music-fallback">Enable JavaScript for BGM, or listen via Official Video.</p></noscript>
+</aside>

@@ -53,6 +53,7 @@ redirect_from:
       {% endif %}
     </div>
   </div>
+  {% include clover-music-player.html %}
 </section>
 
 <section id="about" class="academic-section section-anchor" aria-labelledby="about-heading">

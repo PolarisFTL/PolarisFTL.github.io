@@ -15,6 +15,17 @@ The homepage presents research interests, news, education, selected publications
 
 ## Local development
 
+### Clover background music
+
+The Hero includes an optional player for **消えない理由 — WANIMA**, visible only in Clover mode. Its markup and consent dialog live in `_includes/clover-music-player.html` and `_includes/clover-music-consent.html`.
+
+- Audio: `assets/audio/kienai-riyuu.mp3` (user-supplied MP3, looped at 35% volume).
+- Cover: `assets/images/music/kienai-riyuu-cover.jpg` (user-supplied artwork, resized to 480 × 480).
+- Consent: `clover-bgm-consent` stores `allow` or `deny`; mute uses `clover-bgm-muted`.
+- First Clover visit asks permission after 450 ms. Escape continues silently. A returning allowed visit attempts playback once; browser autoplay restrictions leave it paused.
+- Switching to Academic pauses playback and hides the player. Switching back never resumes it automatically. The Play button can override an earlier denial.
+- Missing audio shows `BGM UNAVAILABLE`; the Official Video link remains available. JavaScript failure leaves academic content and the video link usable.
+
 Install the dependencies declared in `Gemfile`, then run:
 
 ```bash
