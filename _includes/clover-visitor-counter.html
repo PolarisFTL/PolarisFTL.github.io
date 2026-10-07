@@ -1,0 +1,20 @@
+<aside class="clover-visitor-counter" id="cloverVisitorCounter"
+       aria-label="Homepage visitor count"
+       data-goatcounter-enabled="{{ site.goatcounter.enabled | default: false }}"
+       data-goatcounter-code="{{ site.goatcounter.code | escape }}"
+       data-site-url="{{ site.url | escape }}"
+       data-home-path="{{ '/' | relative_url | escape }}"
+       data-production="{% if jekyll.environment == 'production' %}true{% else %}false{% endif %}">
+  <div class="clover-visitor-character">
+    <img class="clover-visitor-character__image" data-visitor-image
+         src="{{ '/assets/images/visitor/asta-chibi-counter.png' | relative_url }}"
+         width="160" height="160" alt="" aria-hidden="true" decoding="async">
+    <span class="clover-visitor-character__fallback" data-visitor-fallback aria-hidden="true" hidden>♣</span>
+    <div class="clover-visitor-board">
+      <span class="clover-visitor-board__label">Visitors</span>
+      <strong class="clover-visitor-board__number" id="cloverVisitorNumber"
+              aria-live="polite" aria-atomic="true" aria-label="Visitor count unavailable">------</strong>
+      <span class="clover-visitor-board__plus" aria-hidden="true">+1</span>
+    </div>
+  </div>
+</aside>

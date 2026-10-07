@@ -53,6 +53,7 @@ redirect_from:
       {% endif %}
     </div>
   </div>
+  {% include clover-visitor-counter.html %}
   {% include clover-music-player.html %}
 </section>
 
