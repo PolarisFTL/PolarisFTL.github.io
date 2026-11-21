@@ -207,10 +207,11 @@ redirect_from:
     <div class="service-group">
       <h3>Conference Reviewer</h3>
       <ul>
-        <li><strong>CVPR</strong> <span>2026</span></li>
+        <li><strong>CVPR</strong> <span>2026, 2027</span></li>
         <li><strong>AAAI</strong> <span>2026, 2027</span></li>
         <li><strong>ACM MM</strong> <span>2026</span></li>
         <li><strong>ICME</strong> <span>2025, 2026</span></li>
+        <li><strong>ICASSP</strong> <span>2027</span></li>
         <li><strong>ICIC</strong> <span>2025</span></li>
       </ul>
     </div>
@@ -221,6 +222,7 @@ redirect_from:
         <li><strong>IEEE TCE</strong></li>
         <li><strong>ACM TOMM</strong></li>
         <li><strong>KBS</strong></li>
+        <li><strong>IVC</strong></li>
       </ul>
     </div>
   </div>
